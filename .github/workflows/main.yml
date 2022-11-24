@@ -1,4 +1,4 @@
-name: Meu CI-CD - Github - EKS
+name: CI-CD
 
 on: 
   push: 
@@ -7,7 +7,6 @@ on:
 jobs:
   CI:
     runs-on: ubuntu-latest
-    # Runner que vai executar a minha pipeline. Serã um ubuntu latest
     
     steps:
       - name: Iniciando minha pipeline
