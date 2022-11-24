@@ -25,6 +25,6 @@ jobs:
           file: ./src/Dockerfile
           push: true
           tags: |
-            wagnerperon/live-kube-news:${{github.run_number}}
-            wagnerperon/live-kube-news:latest
+            peronw/live-kube-news:${{github.run_number}}
+            peronw/live-kube-news:latest
             
