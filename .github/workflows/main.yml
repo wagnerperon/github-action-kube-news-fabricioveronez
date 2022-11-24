@@ -1,0 +1,31 @@
+name: Meu CI-CD - Github - EKS
+
+on: 
+  push: 
+    branches: ["main"]
+    
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    # Runner que vai executar a minha pipeline. Serã um ubuntu latest
+    
+    steps:
+      - name: Iniciando minha pipeline
+      - uses: actions/checkout@v3.1.0
+      
+      - name: Autenticação no Docker Hub
+        uses: docker/login-action@v2.1.0
+        with:
+          username: ${{secrets.DOCKERHUB_USER}}
+          password: ${{secrets.DOCKERHUB_PWD}}
+      
+      - name: Construção da imagem Docker
+        uses: docker/build-push-action@v3.2.0
+        with: 
+          context: ./src
+          file: ./src/Dockerfile
+          push: true
+          tags: |
+            wagnerperon/live-kube-news:${{github.run_number}}
+            wagnerperon/live-kube-news:latest
+            
