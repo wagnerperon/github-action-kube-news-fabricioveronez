@@ -38,7 +38,7 @@ jobs:
           method: kubeconfig
           kubeconfig: ${{secrets.K8S_CONFIG}}
       - name: Deploy to Kubernetes cluster
-        uses: Azure/k8s-deploy@v4.6
+        uses: Azure/k8s-deploy@v4
         with:
           images: peronw/live-kube-news:${{github.run_number}}
           manifests: |
