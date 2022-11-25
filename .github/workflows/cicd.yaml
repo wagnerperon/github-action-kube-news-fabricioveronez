@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: Checkout - CI
       - uses: actions/checkout@v3.1.0
       
       - name: Autenticação no Docker Hub
@@ -26,3 +27,19 @@ jobs:
           tags: |
             peronw/live-kube-news:${{github.run_number}}
             peronw/live-kube-news:latest
+  CD:
+    runs-on: ubuntu-latest
+    needs: [CI]
+    steps:
+      - name: Checkout - CD
+        uses: actions/checkout@v3.1.0
+        
+      - name: Kubernetes Set Context
+        uses: Azure/k8s-set-context@v3.0
+        with:
+          method: kubeconfig
+          kubeconfig: ${{secrets.K8S_CONFIG}}
+          
+        
+
+    
